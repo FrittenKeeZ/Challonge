@@ -2,8 +2,6 @@
 
 namespace Challonge;
 
-use Challonge\Proxy;
-
 class API {
 
   /**
@@ -76,12 +74,12 @@ class API {
    *   Proxy instance for the specific resource.
    */
   public function __call($name, array $arguments) {
-    if (!isset($this->$name) || $name === 'apiKey') {
+    if (!property_exists($this, $name) || $name === 'apiKey') {
       throw new \BadMethodCallException('No proxy instance found with the name: ' . $name);
     }
 
     if (!$this->$name) {
-      $class = 'Proxy\\' . ucfirst($name) . 'Proxy';
+      $class = 'Challonge\\Proxy\\' . ucfirst($name) . 'Proxy';
 
       $this->$name = new $class($this->apiKey);
     }
