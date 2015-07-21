@@ -1,0 +1,21 @@
+{
+    "name": "frittenkeez/challonge",
+    "description": "API integration for Challonge! (http://challonge.com)",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Frederik Sauer",
+            "email": "fritten.keez@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Challonge": "src/"
+        }
+    }
+}
