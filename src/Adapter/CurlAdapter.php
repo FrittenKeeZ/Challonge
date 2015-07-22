@@ -18,6 +18,7 @@ class CurlAdapter implements AdapterInterface
             CURLOPT_CUSTOMREQUEST => $request->method,
             CURLOPT_HEADER => true,
             CURLOPT_RETURNTRANSFER => true,
+            // CURLOPT_SSL_VERIFYPEER => false,
         );
 
         // Add POST fields for non-GET requests.
@@ -29,7 +30,7 @@ class CurlAdapter implements AdapterInterface
         curl_setopt_array($ch, $options);
         $result = curl_exec($ch);
 
-        // Extract cURL to free resources before any exceptions are thrown.
+        // Extract cURL data to free resources before any exceptions are thrown.
         $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $errno = curl_errno($ch);
         $error = curl_error($ch);

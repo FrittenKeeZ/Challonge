@@ -6,6 +6,7 @@ interface AdapterInterface
 {
     /**
      * Sends a request through the adapter.
+     * The request itself is expected to return a response in JSON format.
      *
      * @param Request $request
      *
