@@ -2,5 +2,6 @@
 
 namespace Challonge\Proxy;
 
-class ParticipantProxy extends AbstractProxy {
+class ParticipantProxy extends AbstractProxy
+{
 }

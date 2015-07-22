@@ -2,5 +2,6 @@
 
 namespace Challonge\Proxy;
 
-class MatchProxy extends AbstractProxy {
+class MatchProxy extends AbstractProxy
+{
 }
