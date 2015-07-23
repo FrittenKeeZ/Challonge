@@ -2,12 +2,12 @@
 
 namespace Challonge\Adapter;
 
-class CurlAdapter implements AdapterInterface
+class CurlAdapter extends AbstractAdapter
 {
     /**
      * {@inheritdoc}
      */
-    public function request(Request $request)
+    public function send(Request $request)
     {
         // Append query parameters to URL.
         $url = $request->url . '?' . http_build_query($request->query);

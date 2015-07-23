@@ -13,16 +13,6 @@ class API
     const VERSION = '1.0.2';
 
     /**
-     * Challonge! API key.
-     *
-     * @see http://api.challonge.com/v1
-     *   For details regarding authentication.
-     *
-     * @var string
-     */
-    protected $apiKey;
-
-    /**
      * Adapter instance.
      *
      * @var Adapter\AdapterInterface
@@ -60,25 +50,22 @@ class API
     /**
      * Constructor.
      *
-     * @param string $apiKey
-     *   Challonge! API key.
+     * @param Adapter\AdapterInterface|string $arg
+     *   Adapter instance or an API key, which will default to a CurlAdapter.
      */
-
-    /**
-     * Constructor.
-     *
-     * @param string $apiKey
-     *   Challonge! API key.
-     *
-     * @param Adapter\AdapterInterface|null $adapter
-     *   Adapter instance. Defaults to CurlAdapter if null is given.
-     */
-    public function __construct($apiKey, Adapter\AdapterInterface $adapter = null)
+    public function __construct($arg)
     {
-        $this->apiKey = $apiKey;
-        if ($adapter === null) {
-            $adapter = new Adapter\CurlAdapter();
+        $adapter = null;
+        if (is_string($arg)) {
+            $adapter = new Adapter\CurlAdapter($arg);
+        } elseif ($arg instanceof Adapter\AdapterInterface) {
+            $adapter = $arg;
         }
+
+        if ($adapter === null) {
+            throw new \InvalidArgumentException('Argument must be an API key or an adapter instance');
+        }
+
         $this->adapter = $adapter;
     }
 
@@ -97,14 +84,14 @@ class API
      */
     public function __call($name, array $arguments)
     {
-        if (!property_exists($this, $name) || $name === 'apiKey') {
+        if (!property_exists($this, $name) || strtolower($name) === 'adapter') {
             throw new \BadMethodCallException('No proxy instance found with the name: ' . $name);
         }
 
         if (!$this->$name) {
             $class = 'Challonge\\Proxy\\' . ucfirst($name) . 'Proxy';
 
-            $this->$name = new $class($this->apiKey, $this->adapter);
+            $this->$name = new $class($this->adapter);
         }
 
         return $this->$name;

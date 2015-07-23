@@ -7,16 +7,6 @@ use Challonge\Adapter\AdapterInterface;
 abstract class AbstractProxy
 {
     /**
-     * Challonge! API key.
-     *
-     * @see http://api.challonge.com/v1
-     *   For details regarding authentication.
-     *
-     * @var string
-     */
-    protected $apiKey;
-
-    /**
      * Adapter instance.
      *
      * @var AdapterInterface
@@ -26,12 +16,10 @@ abstract class AbstractProxy
     /**
      * Constructor.
      *
-     * @param string $apiKey
      * @param AdapterInterface $adapter
      */
-    public function __construct($apiKey, AdapterInterface $adapter)
+    public function __construct(AdapterInterface $adapter)
     {
-        $this->apiKey = $apiKey;
         $this->adapter = $adapter;
     }
 }
