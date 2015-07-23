@@ -35,29 +35,29 @@ abstract class AbstractAdapter implements AdapterInterface
         $this->apiKey = $apiKey;
     }
 
-    public function request($endpoint, array $query, array $post)
+    public function request($method, $endpoint, array $query, array $post)
     {
         $url = strtr(self::API_URL, [':api_version' => self::API_VERSION, ':endpoint' => $endpoint]);
     }
 
     public function get($endpoint, array $query)
     {
-
+        return $this->request('GET', $endpoint, $query, []);
     }
 
     public function post($endpoint, array $post)
     {
-
+        return $this->request('POST', $endpoint, [], $post);
     }
 
     public function put($endpoint, array $post)
     {
-
+        return $this->request('PUT', $endpoint, [], $post);
     }
 
     public function delete($endpoint, array $post)
     {
-
+        return $this->request('DELETE', $endpoint, [], $post);
     }
 
     /**
