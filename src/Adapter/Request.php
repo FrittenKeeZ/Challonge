@@ -36,8 +36,8 @@ class Request
      * Constructor.
      *
      * @param string $method
-     * @param array $query
-     * @param array $post
+     * @param array  $query
+     * @param array  $post
      * @param string $url
      */
     public function __construct($method, array $query, array $post, $url)
@@ -59,6 +59,10 @@ class Request
      */
     public function __get($key)
     {
-        return $this->$key;
+        if (property_exists($this, $key)) {
+            return $this->$key;
+        }
+
+        return null;
     }
 }

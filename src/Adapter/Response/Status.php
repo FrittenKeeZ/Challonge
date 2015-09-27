@@ -38,7 +38,7 @@ class Status
     /**
      * Constructor.
      *
-     * @param int $code
+     * @param int    $code
      *   HTTP status code.
      * @param string $phrase
      *   Optional status phrase for unknown status codes. Defaults to 'Unknown response'.

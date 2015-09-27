@@ -70,19 +70,18 @@ class API
     }
 
     /**
-     * Caller for proxy instances.
+     * Getter for proxy instances.
      *
      * @param string $name
      *   Resource name.
-     * @param array $arguments
      *
      * @throws \BadMethodCallException
      *   If no proxy instance exist for the specified resource.
      *
-     * @return Proxy\AbstactProxy
+     * @return mixed
      *   Proxy instance for the specific resource.
      */
-    public function __call($name, array $arguments)
+    public function __get($name)
     {
         if (!property_exists($this, $name) || strtolower($name) === 'adapter') {
             throw new \BadMethodCallException('No proxy instance found with the name: ' . $name);

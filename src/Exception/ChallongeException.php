@@ -19,7 +19,7 @@ class ChallongeException extends \RuntimeException
     /**
      * Constructor.
      *
-     * @param Response $response
+     * @param Response        $response
      * @param \Exception|null $previous
      */
     public function __contruct(Response $response, \Exception $previous = null)

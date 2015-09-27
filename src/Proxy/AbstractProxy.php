@@ -16,7 +16,7 @@ abstract class AbstractProxy
     /**
      * Constructor.
      *
-     * @param AdapterInterface $adapter
+     * @param Challonge\Adapter\AdapterInterface $adapter
      */
     public function __construct(AdapterInterface $adapter)
     {

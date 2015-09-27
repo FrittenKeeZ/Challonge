@@ -22,7 +22,7 @@ class Response
      * Constructor.
      *
      * @param Response\Status $status
-     * @param array $content
+     * @param array           $content
      */
     public function __construct(Response\Status $status, array $content)
     {
